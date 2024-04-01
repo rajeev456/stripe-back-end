@@ -1,24 +1,25 @@
 const express = require("express");
-const app = express();
-const port = 5002;
 const cors = require("cors");
+const bodyParser = require("body-parser");
 require("dotenv").config();
 
-app.use(express.json());
-app.use(cors());
-const bodyParser = require("body-parser");
+const app = express();
 
-// Parse JSON and URL-encoded form data
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// Middleware
+app.use(cors()); // Use CORS
+app.use(express.json()); // Parse JSON bodies
+app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded form data
 
-//Cashfree Route
-const hostedroute = require("./routes/stripe/hostedroute");
-const embeddedroute = require("./routes/stripe/embedded");
-app.use("/hosted", hostedroute);
-app.use("/embedded", embeddedroute);
+// Import routes
+const hostedRoute = require("./routes/stripe/hostedroute");
+const embeddedRoute = require("./routes/stripe/embedded");
 
-// Starting Server
+// Use routes
+app.use("/hosted", hostedRoute);
+app.use("/embedded", embeddedRoute);
+
+// Starting Server on port provided by environment or default to 5002 for local development
+const port = process.env.PORT || 5002;
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Server listening on port ${port}`);
 });
