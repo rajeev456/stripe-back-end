@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded form da
 
 // Import routes
 const hostedRoute = require("./routes/stripe/hostedroute");
-const embeddedRoute = require("./routes/stripe/embedded");
+const embeddedRoute = require("./routes/stripe/embedded"); // Ensure this is also updated for environment handling if needed
 
 // Use routes
 app.use("/hosted", hostedRoute);
