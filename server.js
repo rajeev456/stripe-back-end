@@ -30,7 +30,7 @@ app.use('*', (req, res) => {
 
 
 // Starting Server on port provided by environment or default to 5002 for local development
-const port = process.env.PORT || 5002;
+const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
