@@ -18,6 +18,12 @@ const embeddedRoute = require("./routes/stripe/embedded"); // Ensure this is als
 app.use("/hosted", hostedRoute);
 app.use("/embedded", embeddedRoute);
 
+
+app.get('/', (req, res) => {
+  res.status(200).send('Welcome to my Stripe Backend!');
+});
+
+
 // Starting Server on port provided by environment or default to 5002 for local development
 const port = process.env.PORT || 5002;
 app.listen(port, () => {
