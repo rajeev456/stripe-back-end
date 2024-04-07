@@ -23,6 +23,11 @@ app.get('/', (req, res) => {
   res.status(200).send('Welcome to my Stripe Backend!');
 });
 
+app.use('*', (req, res) => {
+  res.status(404).send('Page not found');
+});
+
+
 
 // Starting Server on port provided by environment or default to 5002 for local development
 const port = process.env.PORT || 5002;
